@@ -7,6 +7,8 @@ import { BusCard } from "@/components/BusCard";
 import { StatsBar } from "@/components/StatsBar";
 import { NotificationPanel } from "@/components/NotificationPanel";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { AlertTicker } from "@/components/AlertTicker";
+import { Footer } from "@/components/Footer";
 
 const filters: { label: string; value: BusStatus | "all" }[] = [
   { label: "All Buses", value: "all" },
@@ -33,11 +35,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Alert Ticker */}
+      <AlertTicker />
       {/* Header */}
       <header className="sticky top-0 z-40 border-b bg-card/80 backdrop-blur-md">
         <div className="container mx-auto flex items-center justify-between h-16 px-4">
           <div className="flex items-center gap-3">
-            <img src={amplitudeLogo} alt="Amplitude Services" className="h-10 w-auto" />
+            <img src={amplitudeLogo} alt="Amplitude Services" className="h-10 w-auto dark:brightness-150 dark:contrast-125" />
           </div>
           <div className="flex items-center gap-2">
             <ThemeToggle />
@@ -92,6 +96,8 @@ const Index = () => {
           </div>
         )}
       </main>
+
+      <Footer />
     </div>
   );
 };

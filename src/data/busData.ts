@@ -49,15 +49,13 @@ const driverNames = [
   "Nawaf Al-Qahtani", "Mishal Al-Otaibi", "Bandar Al-Harbi"
 ];
 
-const routes = [
-  "Riyadh → Jeddah", "Dammam → Al Khobar", "Makkah → Madinah",
-  "Riyadh → Dammam", "Jeddah → Taif",
-  "Abha → Khamis Mushait", "Riyadh → Qassim",
-  "Jeddah → Madinah", "Riyadh → Al Ahsa",
-  "Dammam → Riyadh", "Tabuk → Madinah",
-  "Jeddah → Yanbu", "Riyadh → Hail", "Makkah → Taif",
-  "Al Khobar → Al Ahsa"
+const destinations = [
+  "Jeddah", "Dammam", "Al Khobar", "Makkah", "Madinah",
+  "Taif", "Abha", "Khamis Mushait", "Qassim", "Al Ahsa",
+  "Tabuk", "Yanbu", "Hail", "Jubail", "Najran"
 ];
+
+const routes = destinations.map(d => `Riyadh → ${d}`);
 
 const models = [
   "MAN Lion's City", "Mercedes-Benz Citaro", "Volvo 8900",
