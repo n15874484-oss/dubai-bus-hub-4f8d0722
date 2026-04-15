@@ -35,14 +35,12 @@ const Index = () => {
       <header className="sticky top-0 z-40 border-b bg-card/80 backdrop-blur-md">
         <div className="container mx-auto flex items-center justify-between h-16 px-4">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-              <Bus className="w-5 h-5 text-primary-foreground" />
-            </div>
+            <img src="https://www.amplitudeksa.com/wp-content/uploads/2023/10/amplitude-logo.png" alt="Amplitude Services" className="h-9 w-auto" />
             <div>
               <h1 className="text-lg font-bold text-foreground leading-tight">
                 <span className="text-primary">Amplitude</span> Fleet Manager
               </h1>
-              <p className="text-[10px] text-muted-foreground tracking-widest uppercase">Dubai Operations</p>
+              <p className="text-[10px] text-muted-foreground tracking-widest uppercase">Saudi Operations</p>
             </div>
           </div>
           <NotificationPanel />

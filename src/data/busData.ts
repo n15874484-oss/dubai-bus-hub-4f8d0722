@@ -17,6 +17,7 @@ export interface BusData {
   subscriptionStart: string;
   subscriptionEnd: string;
   operator: string;
+  driverName: string;
   lastServiceDate: string;
   route: string;
   status: BusStatus;
@@ -24,29 +25,44 @@ export interface BusData {
 }
 
 const busImages = [
+  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=250&fit=crop",
   "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=400&h=250&fit=crop",
   "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=400&h=250&fit=crop",
+  "https://images.unsplash.com/photo-1562613468-09db78eb498d?w=400&h=250&fit=crop",
+  "https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?w=400&h=250&fit=crop",
   "https://images.unsplash.com/photo-1557223562-6c77ef16210f?w=400&h=250&fit=crop",
+  "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=400&h=250&fit=crop",
+  "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=250&fit=crop",
 ];
 
 const operators = [
-  "Al Majid Transport", "Emirates Transport LLC", "Dubai Bus Corp",
+  "Al Majid Transport", "SAPTCO", "Saudi Transport Corp",
   "Gulf Transit Services", "Arabian Mobility", "City Link Transport",
   "Metro Connect LLC", "Desert Express Transport", "Falcon Buses LLC",
   "Pearl Transport Services"
 ];
 
+const driverNames = [
+  "Mohammed Al-Harbi", "Abdullah Al-Qahtani", "Khalid Al-Otaibi",
+  "Fahad Al-Dosari", "Sultan Al-Shehri", "Omar Al-Ghamdi",
+  "Yusuf Al-Zahrani", "Ibrahim Al-Malki", "Hamza Al-Mutairi",
+  "Tariq Al-Rashidi", "Nasser Al-Subaie", "Saeed Al-Yami",
+  "Faisal Al-Harthy", "Majed Al-Anazi", "Badr Al-Shahrani",
+  "Waleed Al-Tamimi", "Hassan Al-Juhani", "Ahmed Al-Bishi",
+  "Rashed Al-Dawsari", "Mansour Al-Khaldi", "Ali Al-Shamrani",
+  "Saud Al-Enazi", "Ziyad Al-Ruwaili", "Turki Al-Ahmadi",
+  "Abdulaziz Al-Muraikhi", "Mazen Al-Thubaiti", "Saleh Al-Hababi",
+  "Nawaf Al-Qahtani", "Mishal Al-Otaibi", "Bandar Al-Harbi"
+];
+
 const routes = [
-  "Dubai Marina → Deira", "JBR → Al Quoz", "Downtown → Silicon Oasis",
-  "Al Barsha → International City", "Jumeirah → Bur Dubai",
-  "Business Bay → Dragon Mart", "Palm Jumeirah → Mall of Emirates",
-  "Al Nahda → Dubai Hills", "Discovery Gardens → DIFC",
-  "Dubai Investment Park → Creek Harbour", "Motor City → Dubai Airport T3",
-  "Sports City → Gold Souq", "JLT → Karama", "Mirdif → Media City",
-  "Academic City → Healthcare City"
+  "Riyadh → Jeddah", "Dammam → Al Khobar", "Makkah → Madinah",
+  "Riyadh → Dammam", "Jeddah → Taif",
+  "Abha → Khamis Mushait", "Riyadh → Qassim",
+  "Jeddah → Madinah", "Riyadh → Al Ahsa",
+  "Dammam → Riyadh", "Tabuk → Madinah",
+  "Jeddah → Yanbu", "Riyadh → Hail", "Makkah → Taif",
+  "Al Khobar → Al Ahsa"
 ];
 
 const models = [
@@ -61,7 +77,7 @@ function generateBuses(): BusData[] {
   const buses: BusData[] = [];
   
   for (let i = 1; i <= 60; i++) {
-    const plateNum = 10000 + Math.floor(Math.random() * 89999);
+    const plateNum = 1000 + Math.floor(Math.random() * 8999);
     const letter = plateLetters[i % plateLetters.length];
     
     let status: BusStatus;
@@ -90,14 +106,16 @@ function generateBuses(): BusData[] {
       fitnessCertExpiry = `2026-01-${String(1 + Math.floor(Math.random() * 28)).padStart(2, "0")}`;
     }
 
+    const regNo = `KSA-${letter}${plateNum}`;
+
     buses.push({
       id: i,
-      busNumber: `BUS-${String(i).padStart(3, "0")}`,
-      plateNumber: `Dubai ${letter} ${plateNum}`,
+      busNumber: `BUS-${regNo}`,
+      plateNumber: `KSA ${letter} ${plateNum}`,
       model: models[i % models.length],
       year: 2019 + (i % 6),
       capacity: 40 + (i % 3) * 5,
-      licenseNumber: `DXB-TL-${2024000 + i}`,
+      licenseNumber: `KSA-TL-${2024000 + i}`,
       rtoRegistration: `RTO-${String(100000 + i)}`,
       insuranceStart: "2025-01-01",
       insuranceEnd,
@@ -107,6 +125,7 @@ function generateBuses(): BusData[] {
       subscriptionStart: "2025-01-01",
       subscriptionEnd: subEnd,
       operator: operators[i % operators.length],
+      driverName: driverNames[i % driverNames.length],
       lastServiceDate: `2026-03-${String(1 + Math.floor(Math.random() * 28)).padStart(2, "0")}`,
       route: routes[i % routes.length],
       status,
@@ -128,19 +147,19 @@ export interface Notification {
 }
 
 export const notifications: Notification[] = [
-  { id: 1, message: "BUS-051 insurance has expired!", type: "danger", time: "2 hours ago", busId: 51 },
-  { id: 2, message: "BUS-052 route permit expired!", type: "danger", time: "3 hours ago", busId: 52 },
-  { id: 3, message: "BUS-053 subscription ended", type: "danger", time: "5 hours ago", busId: 53 },
-  { id: 4, message: "BUS-041 insurance expires in 5 days", type: "warning", time: "1 hour ago", busId: 41 },
-  { id: 5, message: "BUS-042 subscription expiring soon", type: "warning", time: "2 hours ago", busId: 42 },
-  { id: 6, message: "BUS-043 fitness certificate renewal due", type: "warning", time: "3 hours ago", busId: 43 },
-  { id: 7, message: "BUS-044 route permit expires in 10 days", type: "warning", time: "4 hours ago", busId: 44 },
-  { id: 8, message: "BUS-054 all documents expired — action required", type: "danger", time: "6 hours ago", busId: 54 },
-  { id: 9, message: "BUS-045 subscription renewal reminder", type: "warning", time: "5 hours ago", busId: 45 },
-  { id: 10, message: "BUS-010 scheduled for maintenance next week", type: "info", time: "1 day ago", busId: 10 },
-  { id: 11, message: "BUS-055 registration renewal overdue", type: "danger", time: "8 hours ago", busId: 55 },
-  { id: 12, message: "BUS-020 route updated successfully", type: "info", time: "2 days ago", busId: 20 },
-  { id: 13, message: "BUS-046 insurance expires in 7 days", type: "warning", time: "6 hours ago", busId: 46 },
-  { id: 14, message: "BUS-056 fitness certificate expired", type: "danger", time: "10 hours ago", busId: 56 },
+  { id: 1, message: "BUS-KSA-K5123 insurance has expired!", type: "danger", time: "2 hours ago", busId: 51 },
+  { id: 2, message: "BUS-KSA-L6234 route permit expired!", type: "danger", time: "3 hours ago", busId: 52 },
+  { id: 3, message: "BUS-KSA-M7345 subscription ended", type: "danger", time: "5 hours ago", busId: 53 },
+  { id: 4, message: "BUS-KSA-B2456 insurance expires in 5 days", type: "warning", time: "1 hour ago", busId: 41 },
+  { id: 5, message: "BUS-KSA-C3567 subscription expiring soon", type: "warning", time: "2 hours ago", busId: 42 },
+  { id: 6, message: "BUS-KSA-D4678 fitness certificate renewal due", type: "warning", time: "3 hours ago", busId: 43 },
+  { id: 7, message: "BUS-KSA-E5789 route permit expires in 10 days", type: "warning", time: "4 hours ago", busId: 44 },
+  { id: 8, message: "BUS-KSA-N8456 all documents expired — action required", type: "danger", time: "6 hours ago", busId: 54 },
+  { id: 9, message: "BUS-KSA-F6890 subscription renewal reminder", type: "warning", time: "5 hours ago", busId: 45 },
+  { id: 10, message: "BUS-KSA-J1012 scheduled for maintenance next week", type: "info", time: "1 day ago", busId: 10 },
+  { id: 11, message: "BUS-KSA-O9567 registration renewal overdue", type: "danger", time: "8 hours ago", busId: 55 },
+  { id: 12, message: "BUS-KSA-K2023 route updated successfully", type: "info", time: "2 days ago", busId: 20 },
+  { id: 13, message: "BUS-KSA-G7901 insurance expires in 7 days", type: "warning", time: "6 hours ago", busId: 46 },
+  { id: 14, message: "BUS-KSA-P1678 fitness certificate expired", type: "danger", time: "10 hours ago", busId: 56 },
   { id: 15, message: "Fleet inspection completed for 38 buses", type: "info", time: "3 days ago", busId: 1 },
 ];
