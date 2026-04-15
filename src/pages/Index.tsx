@@ -6,6 +6,7 @@ import { buses, type BusStatus } from "@/data/busData";
 import { BusCard } from "@/components/BusCard";
 import { StatsBar } from "@/components/StatsBar";
 import { NotificationPanel } from "@/components/NotificationPanel";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const filters: { label: string; value: BusStatus | "all" }[] = [
   { label: "All Buses", value: "all" },
@@ -38,7 +39,10 @@ const Index = () => {
           <div className="flex items-center gap-3">
             <img src={amplitudeLogo} alt="Amplitude Services" className="h-10 w-auto" />
           </div>
-          <NotificationPanel />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <NotificationPanel />
+          </div>
         </div>
       </header>
 
