@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { Search, Bus } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import amplitudeLogo from "@/assets/amplitude-logo.png";
 import { buses, type BusStatus } from "@/data/busData";
 import { BusCard } from "@/components/BusCard";
 import { StatsBar } from "@/components/StatsBar";
@@ -35,13 +36,7 @@ const Index = () => {
       <header className="sticky top-0 z-40 border-b bg-card/80 backdrop-blur-md">
         <div className="container mx-auto flex items-center justify-between h-16 px-4">
           <div className="flex items-center gap-3">
-            <img src="https://www.amplitudeksa.com/wp-content/uploads/2023/10/amplitude-logo.png" alt="Amplitude Services" className="h-9 w-auto" />
-            <div>
-              <h1 className="text-lg font-bold text-foreground leading-tight">
-                <span className="text-primary">Amplitude</span> Fleet Manager
-              </h1>
-              <p className="text-[10px] text-muted-foreground tracking-widest uppercase">Saudi Operations</p>
-            </div>
+            <img src={amplitudeLogo} alt="Amplitude Services" className="h-10 w-auto" />
           </div>
           <NotificationPanel />
         </div>

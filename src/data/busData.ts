@@ -25,14 +25,8 @@ export interface BusData {
 }
 
 const busImages = [
-  "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=400&h=250&fit=crop",
   "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1562613468-09db78eb498d?w=400&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?w=400&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1557223562-6c77ef16210f?w=400&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=400&h=250&fit=crop",
-  "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=250&fit=crop",
+  "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=400&h=250&fit=crop",
 ];
 
 const operators = [
