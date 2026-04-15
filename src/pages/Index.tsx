@@ -6,6 +6,7 @@ import { buses, type BusStatus } from "@/data/busData";
 import { BusCard } from "@/components/BusCard";
 import { StatsBar } from "@/components/StatsBar";
 import { NotificationPanel } from "@/components/NotificationPanel";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const filters: { label: string; value: BusStatus | "all" }[] = [
   { label: "All Buses", value: "all" },
