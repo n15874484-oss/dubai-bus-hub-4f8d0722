@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { BusData } from "@/data/busData";
 import { Badge } from "@/components/ui/badge";
-import { Bus, Calendar, Shield, FileText, Wrench, MapPin, Users } from "lucide-react";
+import { Bus, Calendar, Shield, FileText, Wrench, MapPin, Users, User } from "lucide-react";
 
 const statusConfig = {
   active: { label: "Active", className: "bg-success text-success-foreground" },
@@ -24,8 +24,7 @@ export function BusCard({ bus, index }: { bus: BusData; index: number }) {
     >
       <div
         className={`relative h-[320px] cursor-pointer transition-transform duration-500 [transform-style:preserve-3d] ${flipped ? "[transform:rotateY(180deg)]" : ""}`}
-        onMouseEnter={() => setFlipped(true)}
-        onMouseLeave={() => setFlipped(false)}
+        onClick={() => setFlipped(!flipped)}
       >
         {/* Front */}
         <div
@@ -43,7 +42,6 @@ export function BusCard({ bus, index }: { bus: BusData; index: number }) {
           <div className="p-4 space-y-2">
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-lg text-foreground">{bus.busNumber}</h3>
-              <span className="text-xs text-muted-foreground font-mono">{bus.plateNumber}</span>
             </div>
             <p className="text-sm text-muted-foreground">{bus.model} • {bus.year}</p>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -66,9 +64,10 @@ export function BusCard({ bus, index }: { bus: BusData; index: number }) {
         >
           <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
             <Bus className="w-4 h-4 text-primary" />
-            {bus.busNumber} Details
+            {bus.busNumber}
           </h3>
           <div className="space-y-2 text-xs">
+            <DetailRow icon={<User className="w-3 h-3" />} label="Driver" value={bus.driverName} />
             <DetailRow icon={<FileText className="w-3 h-3" />} label="License" value={bus.licenseNumber} />
             <DetailRow icon={<FileText className="w-3 h-3" />} label="RTO Reg." value={bus.rtoRegistration} />
             <DateRow icon={<Shield className="w-3 h-3" />} label="Insurance" start={bus.insuranceStart} end={bus.insuranceEnd} status={bus.status} />
@@ -76,7 +75,6 @@ export function BusCard({ bus, index }: { bus: BusData; index: number }) {
             <DetailRow icon={<Calendar className="w-3 h-3" />} label="Fitness Cert." value={formatDate(bus.fitnessCertExpiry)} warn={bus.status !== "active"} />
             <DateRow icon={<Calendar className="w-3 h-3" />} label="Subscription" start={bus.subscriptionStart} end={bus.subscriptionEnd} status={bus.status} />
             <DetailRow icon={<Wrench className="w-3 h-3" />} label="Last Service" value={formatDate(bus.lastServiceDate)} />
-            <DetailRow icon={<Users className="w-3 h-3" />} label="Operator" value={bus.operator} />
           </div>
         </div>
       </div>
