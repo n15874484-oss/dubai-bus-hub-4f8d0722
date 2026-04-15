@@ -39,7 +39,10 @@ const Index = () => {
           <div className="flex items-center gap-3">
             <img src={amplitudeLogo} alt="Amplitude Services" className="h-10 w-auto" />
           </div>
-          <NotificationPanel />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <NotificationPanel />
+          </div>
         </div>
       </header>
 
